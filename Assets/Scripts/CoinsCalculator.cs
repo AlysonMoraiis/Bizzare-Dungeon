@@ -6,38 +6,41 @@ using UnityEngine.UI;
 public class CoinsCalculator : MonoBehaviour
 {
 
-    public int coins;
-    public int coinAmount;
+    private int coins;
+    private int coinAmount;
 
-    public int clickValue;
+    private int clickValue;
 
-    public int upPrice = 5;
+    private int upPrice = 5;
 
     //texts
-    public Text textClick;
-    public Text textCoins;
-    public Text textUpPrice;
+    [SerializeField]
+    private Text textClick;
+    [SerializeField]
+    private Text textCoins;
+    [SerializeField]
+    private Text textUpPrice;
+    [SerializeField]
+    protected GameObject gameObject;
 
     void Awake()
     {
         Calculator();
     }
 
+    private void FixedUpdate()
+    {
+        textCoins.text = coins.ToString();
+    }
 
-    public void CoinUI()
+
+    protected void CoinUI()
     {
         coins += coinAmount;
-        textCoins.text = coins.ToString();
         Debug.Log(coinAmount);
     }
 
-    /*
-    public void CoinsMultipliers()
-    {
-        int coinValue = 7;
-    }
-    */
-    public void UpButton()
+    private void UpButton()
     {
         if(coins > upPrice)
         {
@@ -47,7 +50,7 @@ public class CoinsCalculator : MonoBehaviour
 
     }
 
-    public void Calculator()
+    private void Calculator()
     {
         clickValue += 2;
         textClick.text = clickValue.ToString();

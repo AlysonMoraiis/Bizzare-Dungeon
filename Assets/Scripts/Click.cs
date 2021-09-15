@@ -6,22 +6,24 @@ public class Click : CoinsCalculator
 {
     // Start is called before the first frame update
 
-
-    private int dgLvl;
+    private CoinsCalculator cC;
+       
+    //private int dgLvl;
     void Start()
     {
-        
+        cC.GetComponent<CoinsCalculator>();
     }
+    /*
     public int DgLvl
     {
         get { return dgLvl; }
         set { dgLvl = value; }
     }
+    */
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && (gameObject.active == true))
+        if (Input.GetKeyDown(KeyCode.Z) && (battleScene.activeInHierarchy))
         {
             CoinUI();
         }

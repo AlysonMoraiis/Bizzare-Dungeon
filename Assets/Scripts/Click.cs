@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Click : CoinsCalculator
 {
-    // Start is called before the first frame update
-
-    private CoinsCalculator cC;
        
     //private int dgLvl;
     void Start()
     {
-        cC.GetComponent<CoinsCalculator>();
     }
     /*
     public int DgLvl

@@ -60,10 +60,10 @@ public class CoinsCalculator : MonoBehaviour
     private void Calculator()
     {
         clickValue += 2;
-        textClick.text = clickValue.ToString();
+        textClick.text = "CLICK:" + clickValue.ToString();
         coinAmount = clickValue;
         upPrice *= 2;
-        textUpPrice.text = upPrice.ToString();
+        textUpPrice.text = "COST:" + upPrice.ToString();
     }
    
 }

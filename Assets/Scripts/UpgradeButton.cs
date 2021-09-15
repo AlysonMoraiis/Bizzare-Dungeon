@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class UpgradeButton : CoinsCalculator
 {
-    [SerializeField]
-    private GameObject upButton;
-    // Start is called before the first frame update
     void Start()
     {
         

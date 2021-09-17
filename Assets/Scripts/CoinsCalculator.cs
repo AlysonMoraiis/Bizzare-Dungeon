@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class CoinsCalculator : MonoBehaviour
 {
 
-    private int coins;
+    protected int coins;
     private int coinAmount;
 
     private int clickValue;
 
-    private int upPrice = 5;
+    protected int upPrice = 5;
 
     //texts
     [SerializeField]
@@ -21,7 +21,9 @@ public class CoinsCalculator : MonoBehaviour
     [SerializeField]
     private Text textUpPrice;
     [SerializeField]
-    protected GameObject gameObject;
+    protected GameObject battleScene;
+
+    public GameObject upButton;
 
     void Awake()
     {
@@ -31,15 +33,21 @@ public class CoinsCalculator : MonoBehaviour
     private void FixedUpdate()
     {
         textCoins.text = coins.ToString();
+        if (upPrice > coins)
+        {
+            upButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+        }
+        else
+        {
+            upButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+        }
     }
-
 
     protected void CoinUI()
     {
         coins += coinAmount;
         Debug.Log(coinAmount);
     }
-
     private void UpButton()
     {
         if(coins > upPrice)
@@ -47,16 +55,15 @@ public class CoinsCalculator : MonoBehaviour
             coins -= upPrice;
             Calculator();
         }
-
     }
 
     private void Calculator()
     {
         clickValue += 2;
-        textClick.text = clickValue.ToString();
+        textClick.text = "CLICK:" + clickValue.ToString();
         coinAmount = clickValue;
         upPrice *= 2;
-        textUpPrice.text = upPrice.ToString();
+        textUpPrice.text = "COST:" + upPrice.ToString();
     }
    
 }

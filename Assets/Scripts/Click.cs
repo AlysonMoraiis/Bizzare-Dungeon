@@ -19,7 +19,7 @@ public class Click : CoinsCalculator
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && (battleScene.activeInHierarchy))
+        if (Input.GetMouseButtonDown(0) && (battleScene.activeInHierarchy))
         {
             CoinUI();
         }

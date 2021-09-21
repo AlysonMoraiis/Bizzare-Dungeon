@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Click : CoinsCalculator
+public class Click : MonoBehaviour
 {
-       
+    public event Action OnClicked;
     //private int dgLvl;
-    void Start()
+    private void Start()
     {
     }
     /*
@@ -17,12 +18,18 @@ public class Click : CoinsCalculator
     }
     */
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (battleScene.activeInHierarchy))
+        /*if (Input.GetMouseButtonDown(0))
         {
-            CoinUI();
-        }
+            //OnClicked?.Invoke();
+            //CoinUI();
+            //&& (clickScene.activeInHierarchy)
+        }*/
+    }
+    public void RaiseClickEvent()
+    {
+        OnClicked?.Invoke();
     }
 
 }

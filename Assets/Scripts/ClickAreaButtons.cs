@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class ClickAreaButtons : MonoBehaviour
 {
-    //public float sticks;
-    //public float stones;
     protected float sticksUpPrice = 5f;
     protected float stonesUpPrice = 150f;
 
@@ -36,21 +34,17 @@ public class ClickAreaButtons : MonoBehaviour
     [SerializeField]
     private GameObject stonesUpButton;
 
+    [Header("Others")]
     [SerializeField]
     private Click click;
     [SerializeField]
     private CoinsData coinsData;
     
 
-
-
-
-
     private void Awake()
     {
-        UpgradeText();
+        ButtonsValues();
     }
-
     private void OnEnable()
     {
         click.OnClicked += CoinUI;
@@ -62,7 +56,6 @@ public class ClickAreaButtons : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpgradeText();
         if (sticksUpPrice > coinsData.Sticks)
         {
             sticksUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
@@ -124,16 +117,8 @@ public class ClickAreaButtons : MonoBehaviour
         int tStonesUpPrice = (int)stonesUpPrice;
         textStonesUpButton.text = "COST:" + tStonesUpPrice.ToString();
     }
-
-    protected void UpgradeText()
+    private void ButtonsValues()
     {
-        //Top Prices
-        int tSticks = (int)coinsData.Sticks;
-        textSticksAmount.text = tSticks.ToString();
-        int tStones = (int)coinsData.Stones;
-        textStonesAmount.text = tStones.ToString();
-
-        //Button Prices
         int tStonesClickValue = (int)stonesClickValue;
         textStonesClick.text = "CLICK:" + tStonesClickValue.ToString();
         int tStonesUpPrice = (int)stonesUpPrice;

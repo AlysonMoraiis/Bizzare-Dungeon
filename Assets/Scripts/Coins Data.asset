@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea3c7eedcea7a9429b6db71445b7efe, type: 3}
   m_Name: Coins Data
   m_EditorClassIdentifier: 
+  Coins: 0
   Sticks: 0
   Stones: 0

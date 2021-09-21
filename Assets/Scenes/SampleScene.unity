@@ -1178,7 +1178,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 663370340}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1366966937}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &663370340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,6 +1743,7 @@ MonoBehaviour:
   textStonesUpButton: {fileID: 1399491782}
   stonesUpButton: {fileID: 439721506}
   click: {fileID: 1016914118}
+  coinsData: {fileID: 11400000, guid: 644e3703a269807438658a0e1ca8e0e0, type: 2}
 --- !u!1 &1047544704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,7 +2202,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1124519319}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1366966939}
+        m_TargetAssemblyTypeName: HomeButtons, Assembly-CSharp
+        m_MethodName: SellSticks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1124519319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,7 +2265,7 @@ GameObject:
   - component: {fileID: 1205145832}
   - component: {fileID: 1205145831}
   m_Layer: 5
-  m_Name: TextSticksAmount
+  m_Name: TextCoinsAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,7 +2989,7 @@ GameObject:
   - component: {fileID: 1366966938}
   - component: {fileID: 1366966939}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: HomeArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2996,15 +3021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6322ffc83d974e4b8b91cba71d3463c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textSticksClick: {fileID: 0}
-  textSticksAmount: {fileID: 0}
-  textSticksUpButton: {fileID: 0}
-  sticksUpButton: {fileID: 0}
-  textStonesClick: {fileID: 0}
-  textStonesAmount: {fileID: 0}
-  textStonesUpButton: {fileID: 0}
-  stonesUpButton: {fileID: 0}
-  click: {fileID: 0}
+  textCoins: {fileID: 1205145831}
+  coinsData: {fileID: 11400000, guid: 644e3703a269807438658a0e1ca8e0e0, type: 2}
 --- !u!1 &1383814414
 GameObject:
   m_ObjectHideFlags: 0

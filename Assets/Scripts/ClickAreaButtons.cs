@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class ClickAreaButtons : MonoBehaviour
 {
-
-    protected float sticks;
-    protected float stones;
+    //public float sticks;
+    //public float stones;
     protected float sticksUpPrice = 5f;
     protected float stonesUpPrice = 150f;
 
@@ -39,6 +38,8 @@ public class ClickAreaButtons : MonoBehaviour
 
     [SerializeField]
     private Click click;
+    [SerializeField]
+    private CoinsData coinsData;
     
 
 
@@ -62,7 +63,7 @@ public class ClickAreaButtons : MonoBehaviour
     private void FixedUpdate()
     {
         UpgradeText();
-        if (sticksUpPrice > sticks)
+        if (sticksUpPrice > coinsData.Sticks)
         {
             sticksUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
         }
@@ -71,7 +72,7 @@ public class ClickAreaButtons : MonoBehaviour
             sticksUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
         }
 
-        if (stonesUpPrice > sticks)
+        if (stonesUpPrice > coinsData.Coins)
         {
             stonesUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
         }
@@ -82,23 +83,23 @@ public class ClickAreaButtons : MonoBehaviour
     }
     protected void CoinUI()
     {
-        sticks += sticksAmount;
-        stones += stonesAmount;
+        coinsData.Sticks += sticksAmount;
+        coinsData.Stones += stonesAmount;
     }
     public void SticksUpButton()
     {
-        if(sticks > sticksUpPrice)
+        if(coinsData.Sticks > sticksUpPrice)
         {
-            sticks -= sticksUpPrice;
+            coinsData.Sticks -= sticksUpPrice;
             SticksUpgrade();
         }
     }
 
     public void StonesUpButton()
     {
-        if (sticks > stonesUpPrice)
+        if (coinsData.Coins > stonesUpPrice)
         {
-            sticks -= stonesUpPrice;
+            coinsData.Coins -= stonesUpPrice;
             StonesUpgrade();
         }
     }
@@ -127,9 +128,9 @@ public class ClickAreaButtons : MonoBehaviour
     protected void UpgradeText()
     {
         //Top Prices
-        int tSticks = (int)sticks;
+        int tSticks = (int)coinsData.Sticks;
         textSticksAmount.text = tSticks.ToString();
-        int tStones = (int)stones;
+        int tStones = (int)coinsData.Stones;
         textStonesAmount.text = tStones.ToString();
 
         //Button Prices

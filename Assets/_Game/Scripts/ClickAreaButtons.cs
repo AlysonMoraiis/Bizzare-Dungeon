@@ -38,6 +38,10 @@ public class ClickAreaButtons : MonoBehaviour
     [SerializeField]
     private Click click;
     [SerializeField]
+    private AudioClip clickSound;
+    [SerializeField]
+    private AudioClip upgradeSound;
+    [SerializeField]
     private CoinsData coinsData;
     
 
@@ -76,6 +80,7 @@ public class ClickAreaButtons : MonoBehaviour
     }
     protected void CoinUI()
     {
+        SoundManager.Instance.PlaySound(clickSound);
         coinsData.Sticks += sticksAmount;
         coinsData.Stones += stonesAmount;
     }
@@ -85,6 +90,7 @@ public class ClickAreaButtons : MonoBehaviour
         {
             coinsData.Sticks -= sticksUpPrice;
             SticksUpgrade();
+            UpgradeSound();
         }
     }
 
@@ -94,7 +100,13 @@ public class ClickAreaButtons : MonoBehaviour
         {
             coinsData.Coins -= stonesUpPrice;
             StonesUpgrade();
+            UpgradeSound();
         }
+    }
+
+    private void UpgradeSound()
+    {
+        SoundManager.Instance.PlaySound(upgradeSound);
     }
 
     private void SticksUpgrade()
@@ -103,9 +115,9 @@ public class ClickAreaButtons : MonoBehaviour
         sticksAmount = stickClickValue;
         sticksUpPrice *= 1.4f;
         int tClickValue = (int)stickClickValue;
-        textSticksClick.text = "CLICK:" + tClickValue.ToString();
+        textSticksClick.text = "Click: " + tClickValue.ToString();
         int tUpPrice = (int)sticksUpPrice;
-        textSticksUpButton.text = "COST:" + tUpPrice.ToString();
+        textSticksUpButton.text = "Cost: " + tUpPrice.ToString();
     }
     private void StonesUpgrade()
     {
@@ -113,20 +125,20 @@ public class ClickAreaButtons : MonoBehaviour
         stonesAmount = stonesClickValue;
         stonesUpPrice *= 1.6f;
         int tStonesClickValue = (int)stonesClickValue;
-        textStonesClick.text = "CLICK:" + tStonesClickValue.ToString();
+        textStonesClick.text = "Click: " + tStonesClickValue.ToString();
         int tStonesUpPrice = (int)stonesUpPrice;
-        textStonesUpButton.text = "COST:" + tStonesUpPrice.ToString();
+        textStonesUpButton.text = "Cost: " + tStonesUpPrice.ToString();
     }
     private void ButtonsValues()
     {
         int tStonesClickValue = (int)stonesClickValue;
-        textStonesClick.text = "CLICK:" + tStonesClickValue.ToString();
+        textStonesClick.text = "Click: " + tStonesClickValue.ToString();
         int tStonesUpPrice = (int)stonesUpPrice;
-        textStonesUpButton.text = "COST:" + tStonesUpPrice.ToString();
+        textStonesUpButton.text = "Cost: " + tStonesUpPrice.ToString();
 
         int tClickValue = (int)stickClickValue;
-        textSticksClick.text = "CLICK:" + tClickValue.ToString();
+        textSticksClick.text = "Click: " + tClickValue.ToString();
         int tUpPrice = (int)sticksUpPrice;
-        textSticksUpButton.text = "COST:" + tUpPrice.ToString();
+        textSticksUpButton.text = "Cost: " + tUpPrice.ToString();
     }
 }

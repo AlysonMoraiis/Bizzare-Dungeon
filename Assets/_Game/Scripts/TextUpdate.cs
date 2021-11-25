@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TextUpdate : MonoBehaviour
 {
     [SerializeField]
-    private CoinsData coinsData;
+    private GameData gameData;
 
     [SerializeField]
     private Text textSticksAmount;
@@ -21,11 +21,11 @@ public class TextUpdate : MonoBehaviour
     }
     private void TopValues()
     {
-        int tSticks = (int)coinsData.Sticks;
+        int tSticks = (int)gameData.Sticks;
         textSticksAmount.text = tSticks.ToString();
-        int tStones = (int)coinsData.Stones;
+        int tStones = (int)gameData.Stones;
         textStonesAmount.text = tStones.ToString();
-        int tCoins = (int)coinsData.Coins;
+        int tCoins = (int)gameData.Coins;
         textCoins.text = tCoins.ToString();
     }
 }

@@ -42,7 +42,7 @@ public class ClickAreaButtons : MonoBehaviour
     [SerializeField]
     private AudioClip upgradeSound;
     [SerializeField]
-    private CoinsData coinsData;
+    private GameData gameData;
     
 
     private void Awake()
@@ -60,7 +60,7 @@ public class ClickAreaButtons : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (sticksUpPrice > coinsData.Sticks)
+        if (sticksUpPrice > gameData.Sticks)
         {
             sticksUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
         }
@@ -69,7 +69,7 @@ public class ClickAreaButtons : MonoBehaviour
             sticksUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
         }
 
-        if (stonesUpPrice > coinsData.Coins)
+        if (stonesUpPrice > gameData.Coins)
         {
             stonesUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
         }
@@ -81,14 +81,14 @@ public class ClickAreaButtons : MonoBehaviour
     protected void CoinUI()
     {
         SoundManager.Instance.PlaySound(clickSound);
-        coinsData.Sticks += sticksAmount;
-        coinsData.Stones += stonesAmount;
+        gameData.Sticks += sticksAmount;
+        gameData.Stones += stonesAmount;
     }
     public void SticksUpButton()
     {
-        if(coinsData.Sticks > sticksUpPrice)
+        if(gameData.Sticks > sticksUpPrice)
         {
-            coinsData.Sticks -= sticksUpPrice;
+            gameData.Sticks -= sticksUpPrice;
             SticksUpgrade();
             UpgradeSound();
         }
@@ -96,9 +96,9 @@ public class ClickAreaButtons : MonoBehaviour
 
     public void StonesUpButton()
     {
-        if (coinsData.Coins > stonesUpPrice)
+        if (gameData.Coins > stonesUpPrice)
         {
-            coinsData.Coins -= stonesUpPrice;
+            gameData.Coins -= stonesUpPrice;
             StonesUpgrade();
             UpgradeSound();
         }

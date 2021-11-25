@@ -10,7 +10,7 @@ public class FarmButtons : MonoBehaviour
     [SerializeField]
     private Text textCarrotLvl;
     [SerializeField]
-    private CoinsData coinsData;
+    private GameData gameData;
     
     void Start()
     {

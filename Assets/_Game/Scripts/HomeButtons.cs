@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class HomeButtons : MonoBehaviour
 {
     [SerializeField]
-    private CoinsData coinsData;
+    private GameData gameData;
     public void SellSticks()
     {
-        coinsData.Coins += coinsData.Sticks;
-        coinsData.Sticks = 0;
+        gameData.Coins += gameData.Sticks;
+        gameData.Sticks = 0;
     }
 
     public void SellStones()
     {
-        coinsData.Coins += coinsData.Stones * 1.2f;
-        coinsData.Stones = 0;
+        gameData.Coins += gameData.Stones * 1.2f;
+        gameData.Stones = 0;
     }
 }

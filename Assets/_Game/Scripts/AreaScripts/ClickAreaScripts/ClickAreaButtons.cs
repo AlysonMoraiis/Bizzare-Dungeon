@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class ClickAreaButtons : MonoBehaviour
 {
     protected float sticksUpPrice = 5f;
-    protected float stonesUpPrice = 150f;
+    protected float stonesUpPrice = 500f;
+    protected float mushroomsUpPrice = 500f;
 
     private float sticksAmount = 1;
     private float stickClickValue;
 
     private float stonesAmount;
     private float stonesClickValue;
+    
+    private float mushroomsAmount;
+    private float mushroomsClickValue;
 
     [Header("Stick")]
     [SerializeField]
@@ -33,6 +37,16 @@ public class ClickAreaButtons : MonoBehaviour
     private Text textStonesUpButton;
     [SerializeField]
     private GameObject stonesUpButton;
+    
+    [Header("Mushroom")]
+    [SerializeField]
+    private Text textMushroomClick;
+    [SerializeField]
+    private Text textMushroomAmount;
+    [SerializeField]
+    private Text textMushroomsUpButton;
+    [SerializeField]
+    private GameObject mushroomsUpButton;
 
     [Header("Others")]
     [SerializeField]
@@ -69,7 +83,7 @@ public class ClickAreaButtons : MonoBehaviour
             sticksUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
         }
 
-        if (stonesUpPrice > gameData.Coins)
+        if (stonesUpPrice > gameData.Sticks)
         {
             stonesUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
         }
@@ -77,12 +91,22 @@ public class ClickAreaButtons : MonoBehaviour
         {
             stonesUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
         }
+        
+        if (mushroomsUpPrice > gameData.Stones)
+        {
+            mushroomsUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+        }
+        else
+        {
+            mushroomsUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+        }
     }
     protected void CoinUI()
     {
         SoundManager.Instance.PlaySound(clickSound);
         gameData.Sticks += sticksAmount;
         gameData.Stones += stonesAmount;
+        gameData.Mushrooms += mushroomsAmount;
     }
     public void SticksUpButton()
     {
@@ -93,12 +117,21 @@ public class ClickAreaButtons : MonoBehaviour
             UpgradeSound();
         }
     }
+    public void MushroomsUpButton()
+    {
+        if(gameData.Stones > mushroomsUpPrice)
+        {
+            gameData.Stones -= mushroomsUpPrice;
+            MushroomsUpgrade();
+            UpgradeSound();
+        }
+    }
 
     public void StonesUpButton()
     {
-        if (gameData.Coins > stonesUpPrice)
+        if (gameData.Sticks > stonesUpPrice)
         {
-            gameData.Coins -= stonesUpPrice;
+            gameData.Sticks -= stonesUpPrice;
             StonesUpgrade();
             UpgradeSound();
         }
@@ -111,9 +144,9 @@ public class ClickAreaButtons : MonoBehaviour
 
     private void SticksUpgrade()
     {
-        stickClickValue += 1.1f;
+        stickClickValue += 1.2f;
         sticksAmount = stickClickValue;
-        sticksUpPrice *= 1.4f;
+        sticksUpPrice *= 1.2f;
         int tClickValue = (int)stickClickValue;
         textSticksClick.text = "Click: " + tClickValue.ToString();
         int tUpPrice = (int)sticksUpPrice;
@@ -121,24 +154,39 @@ public class ClickAreaButtons : MonoBehaviour
     }
     private void StonesUpgrade()
     {
-        stonesClickValue += 1.1f;
+        stonesClickValue += 1.2f;
         stonesAmount = stonesClickValue;
-        stonesUpPrice *= 1.6f;
+        stonesUpPrice *= 1.4f;
         int tStonesClickValue = (int)stonesClickValue;
         textStonesClick.text = "Click: " + tStonesClickValue.ToString();
         int tStonesUpPrice = (int)stonesUpPrice;
         textStonesUpButton.text = "Cost: " + tStonesUpPrice.ToString();
     }
+    private void MushroomsUpgrade()
+    {
+        mushroomsClickValue += 1.2f;
+        mushroomsAmount = mushroomsClickValue;
+        mushroomsUpPrice *= 1.6f;
+        int tMushroomsClickValue = (int)mushroomsClickValue;
+        textMushroomClick.text = "Click: " + tMushroomsClickValue.ToString();
+        int tMushroomsUpPrice = (int)mushroomsUpPrice;
+        textMushroomsUpButton.text = "Cost: " + tMushroomsUpPrice.ToString();
+    }
     private void ButtonsValues()
     {
-        int tStonesClickValue = (int)stonesClickValue;
-        textStonesClick.text = "Click: " + tStonesClickValue.ToString();
-        int tStonesUpPrice = (int)stonesUpPrice;
-        textStonesUpButton.text = "Cost: " + tStonesUpPrice.ToString();
-
         int tClickValue = (int)stickClickValue;
         textSticksClick.text = "Click: " + tClickValue.ToString();
         int tUpPrice = (int)sticksUpPrice;
         textSticksUpButton.text = "Cost: " + tUpPrice.ToString();
+
+        int tStonesClickValue = (int)stonesClickValue;
+        textStonesClick.text = "Click: " + tStonesClickValue.ToString();
+        int tStonesUpPrice = (int)stonesUpPrice;
+        textStonesUpButton.text = "Cost: " + tStonesUpPrice.ToString();
+        
+        int tMushroomsClickValue = (int)mushroomsClickValue;
+        textMushroomClick.text = "Click: " + tMushroomsClickValue.ToString();
+        int tMushroomsUpPrice = (int)mushroomsUpPrice;
+        textMushroomsUpButton.text = "Cost: " + tMushroomsUpPrice.ToString();
     }
 }

@@ -13,18 +13,23 @@ public class TextUpdate : MonoBehaviour
     [SerializeField]
     private Text textStonesAmount;
     [SerializeField]
+    private Text textMushroomsAmount;
+    [SerializeField]
     private Text textCoins;
+   
 
     private void Update()
     {
-        TopValues();
+        AmountValues();
     }
-    private void TopValues()
+    private void AmountValues()
     {
         int tSticks = (int)gameData.Sticks;
         textSticksAmount.text = tSticks.ToString();
         int tStones = (int)gameData.Stones;
         textStonesAmount.text = tStones.ToString();
+        int tMushrooms = (int)gameData.Mushrooms;
+        textMushroomsAmount.text = tMushrooms.ToString();
         int tCoins = (int)gameData.Coins;
         textCoins.text = tCoins.ToString();
     }

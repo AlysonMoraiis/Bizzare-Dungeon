@@ -14,8 +14,8 @@ public class DestroyVein : MonoBehaviour
         vida -= 1;
         if(vida == 0)
         {
-            Destroy(gameObject);
             soundManager.PlaySound(destroyAudio);
+            Destroy(gameObject);
         }
     }
 }

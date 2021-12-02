@@ -1,23 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClickAreaButtons : MonoBehaviour
 {
-    protected float sticksUpPrice = 5f;
-    protected float stonesUpPrice = 500f;
-    protected float mushroomsUpPrice = 500f;
-
-    private float sticksAmount = 1;
-    private float stickClickValue;
-
-    private float stonesAmount;
-    private float stonesClickValue;
-    
-    private float mushroomsAmount;
-    private float mushroomsClickValue;
-
     [Header("Stick")]
     [SerializeField]
     private Text textSticksClick;
@@ -27,6 +12,9 @@ public class ClickAreaButtons : MonoBehaviour
     private Text textSticksUpButton;
     [SerializeField]
     private GameObject sticksUpButton;
+    private float sticksUpPrice = 5f;
+    private float sticksAmount = 1;
+    private float stickClickValue;
 
     [Header("Stone")]
     [SerializeField]
@@ -37,6 +25,9 @@ public class ClickAreaButtons : MonoBehaviour
     private Text textStonesUpButton;
     [SerializeField]
     private GameObject stonesUpButton;
+    private float stonesUpPrice = 500f;
+    private float stonesAmount;
+    private float stonesClickValue;
     
     [Header("Mushroom")]
     [SerializeField]
@@ -47,6 +38,22 @@ public class ClickAreaButtons : MonoBehaviour
     private Text textMushroomsUpButton;
     [SerializeField]
     private GameObject mushroomsUpButton;
+    private float mushroomsUpPrice = 500f;
+    private float mushroomsAmount;
+    private float mushroomsClickValue;
+    
+    [Header("Berry")]
+    [SerializeField]
+    private Text textBerryClick;
+    [SerializeField]
+    private Text textBerryAmount;
+    [SerializeField]
+    private Text textBerriesUpButton;
+    [SerializeField]
+    private GameObject berriesUpButton;
+    private float berriesUpPrice = 1500f;
+    private float berriesAmount;
+    private float berriesClickValue;
 
     [Header("Others")]
     [SerializeField]
@@ -100,14 +107,31 @@ public class ClickAreaButtons : MonoBehaviour
         {
             mushroomsUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
         }
+        
+        if (berriesUpPrice > gameData.Berries)
+        {
+            berriesUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+        }
+        else
+        {
+            berriesUpButton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+        }
     }
-    protected void CoinUI()
+    private void UpgradeSound()
+    {
+        SoundManager.Instance.PlaySound(upgradeSound);
+    }
+    private void CoinUI()
     {
         SoundManager.Instance.PlaySound(clickSound);
         gameData.Sticks += sticksAmount;
         gameData.Stones += stonesAmount;
         gameData.Mushrooms += mushroomsAmount;
+        gameData.Berries += berriesAmount;
     }
+
+
+    //////////////////// Up Buttons ////////////////////////
     public void SticksUpButton()
     {
         if(gameData.Sticks > sticksUpPrice)
@@ -117,6 +141,15 @@ public class ClickAreaButtons : MonoBehaviour
             UpgradeSound();
         }
     }
+    public void StonesUpButton()
+    {
+        if (gameData.Sticks > stonesUpPrice)
+        {
+            gameData.Sticks -= stonesUpPrice;
+            StonesUpgrade();
+            UpgradeSound();
+        }
+    }  
     public void MushroomsUpButton()
     {
         if(gameData.Stones > mushroomsUpPrice)
@@ -126,22 +159,17 @@ public class ClickAreaButtons : MonoBehaviour
             UpgradeSound();
         }
     }
-
-    public void StonesUpButton()
+    public void BerriesUpButton()
     {
-        if (gameData.Sticks > stonesUpPrice)
+        if (gameData.Mushrooms > berriesUpPrice)
         {
-            gameData.Sticks -= stonesUpPrice;
-            StonesUpgrade();
+            gameData.Mushrooms -= berriesUpPrice;
+            BerriesUpgrade();
             UpgradeSound();
         }
     }
 
-    private void UpgradeSound()
-    {
-        SoundManager.Instance.PlaySound(upgradeSound);
-    }
-
+    ///////////////////// Upgrade Calculator ///////////////////////
     private void SticksUpgrade()
     {
         stickClickValue += 1.2f;
@@ -172,6 +200,17 @@ public class ClickAreaButtons : MonoBehaviour
         int tMushroomsUpPrice = (int)mushroomsUpPrice;
         textMushroomsUpButton.text = "Cost: " + tMushroomsUpPrice.ToString();
     }
+    private void BerriesUpgrade()
+    {
+        berriesClickValue += 1.2f;
+        berriesAmount = berriesClickValue;
+        berriesUpPrice *= 1.8f;
+        int tBerriesClickValue = (int)berriesClickValue;
+        textBerryClick.text = "Click: " + tBerriesClickValue.ToString();
+        int tBerriesUpPrice = (int)berriesUpPrice;
+        textBerriesUpButton.text = "Cost: " + tBerriesUpPrice.ToString();
+    }
+
     private void ButtonsValues()
     {
         int tClickValue = (int)stickClickValue;
@@ -188,5 +227,10 @@ public class ClickAreaButtons : MonoBehaviour
         textMushroomClick.text = "Click: " + tMushroomsClickValue.ToString();
         int tMushroomsUpPrice = (int)mushroomsUpPrice;
         textMushroomsUpButton.text = "Cost: " + tMushroomsUpPrice.ToString();
+        
+        int tBerriesClickValue = (int)berriesClickValue;
+        textBerryClick.text = "Click: " + tBerriesClickValue.ToString();
+        int tBerriesUpPrice = (int)berriesUpPrice;
+        textBerriesUpButton.text = "Cost: " + tBerriesUpPrice.ToString();
     }
 }

@@ -7,4 +7,5 @@ public class GameData : ScriptableObject
     public float Sticks;
     public float Stones;
     public float Mushrooms;
+    public float Berries;
 }

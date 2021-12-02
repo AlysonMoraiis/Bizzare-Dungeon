@@ -15,6 +15,8 @@ public class TextUpdate : MonoBehaviour
     [SerializeField]
     private Text textMushroomsAmount;
     [SerializeField]
+    private Text textBerriesAmount;
+    [SerializeField]
     private Text textCoins;
    
 
@@ -30,6 +32,8 @@ public class TextUpdate : MonoBehaviour
         textStonesAmount.text = tStones.ToString();
         int tMushrooms = (int)gameData.Mushrooms;
         textMushroomsAmount.text = tMushrooms.ToString();
+        int tBerries = (int)gameData.Berries;
+        textBerriesAmount.text = tBerries.ToString();
         int tCoins = (int)gameData.Coins;
         textCoins.text = tCoins.ToString();
     }
